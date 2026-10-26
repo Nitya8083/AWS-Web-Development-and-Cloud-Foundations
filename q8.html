@@ -1,0 +1,58 @@
+<html>
+<head>
+    <title>Q8 CSS Selectors & Background</title>
+    <style>
+        /* 1. Page ke liye clean, light background pattern */
+        body {
+            background-color: #f0f4f8;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'><path d='M0 0h60v60H0z' fill='%23f0f4f8'/><path d='M60 0L0 60M0 0l60 60' stroke='%23d9e2ec' stroke-width='1'/></svg>");
+            font-family: Arial, sans-serif;
+            padding: 40px;
+        }
+
+        /* 2. Heading selector (alag font, color, clean background plate) */
+        h1 {
+            color: #0b3954;
+            font-family: 'Trebuchet MS', sans-serif;
+            background-color: #ffffff;
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 6px;
+            border: 1px solid #cbd5e1;
+        }
+
+        /* 3. Class selector (Single element ke liye alag soft background image) */
+        .mybox {
+            background-color: #ffffff;
+            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24'><circle cx='12' cy='12' r='2' fill='%23cbd5e1'/></svg>");
+            font-family: Verdana, sans-serif;
+            color: #334155;
+            width: 460px;
+            padding: 25px;
+            margin-top: 15px;
+            border-radius: 8px;
+            border: 2px solid #94a3b8;
+        }
+
+        /* 4. ID selector (alag font style, green color, bold) */
+        #special-text {
+            color: #15803d;
+            font-size: 19px;
+            font-weight: bold;
+            font-family: Georgia, serif;
+            margin-top: 12px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Welcome to My Page</h1>
+
+    <!-- Single element with its own background pattern -->
+    <div class="mybox">
+        <p>This box has its own background image and Verdana font.</p>
+        <p id="special-text">This line uses an ID selector with green text and Georgia font.</p>
+    </div>
+
+</body>
+</html>

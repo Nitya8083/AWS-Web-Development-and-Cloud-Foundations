@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student-to-Corporate AI Career Portal - Enterprise Edition</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen flex flex-col p-4 md:p-6 font-sans">
+
+  <!-- Top Navigation & Global Header -->
+  <header class="flex flex-col lg:flex-row justify-between items-center bg-slate-900 border border-slate-800 px-6 py-4 rounded-2xl mb-6 shadow-2xl gap-4">
+    <div class="flex items-center gap-3">
+      <div class="w-10 h-10 bg-gradient-to-tr from-blue-600 to-indigo-600 rounded-xl flex items-center justify-center font-bold text-lg text-white shadow-lg">🚀</div>
+      <div>
+        <h1 class="text-base font-extrabold tracking-wide text-white">AI Career Portal <span class="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded-full ml-2">Enterprise Clean v3</span></h1>
+        <p class="text-[11px] text-slate-400">Intelligent College-to-Corporate Bridge & Talent Ecosystem</p>
+      </div>
+    </div>
+
+    <!-- Clean Switcher Tabs -->
+    <nav class="flex bg-slate-950 p-1.5 rounded-xl text-xs font-semibold text-slate-400 gap-1 border border-slate-800">
+      <button onclick="switchTab('skill')" id="btn-tab-skill" class="px-5 py-2.5 rounded-lg bg-blue-600 text-white transition-all shadow-md">🎯 1. Skill Gap Engine</button>
+      <button onclick="switchTab('interview')" id="btn-tab-interview" class="px-5 py-2.5 rounded-lg hover:text-white transition-all">💡 2. AI Interview Arena</button>
+      <button onclick="switchTab('tracker')" id="btn-tab-tracker" class="px-5 py-2.5 rounded-lg hover:text-white transition-all">📋 3. Application Tracker</button>
+    </nav>
+    
+    <div class="flex items-center gap-3">
+      <div class="bg-blue-950/60 border border-blue-800/80 px-3 py-1.5 rounded-xl hidden xl:block">
+        <span class="text-[10px] uppercase font-bold text-blue-400 tracking-wider">Live Feed:</span>
+        <span class="text-[11px] text-slate-200 font-medium ml-1">⚡ AI demand up 24%</span>
+      </div>
+      <div class="bg-slate-800 px-3 py-1.5 rounded-xl text-xs font-bold text-amber-400 border border-slate-700">
+        🔥 7 Day Streak
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================= -->
+  <!-- TAB 1: SKILL GAP ENGINE DASHBOARD                                         -->
+  <!-- ========================================================================= -->
+  <main id="view-skill" class="tab-content grid grid-cols-1 lg:grid-cols-12 gap-6 flex-1">
+    <section class="lg:col-span-4 bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-xl space-y-5">
+      <div class="space-y-4">
+        <div>
+          <span class="text-[10px] text-blue-400 uppercase font-bold tracking-wider">Evaluator Tool</span>
+          <h2 class="text-base font-bold text-white">Student Profile & Auto-Scan</h2>
+        </div>
+
+        <div class="bg-slate-800/80 p-3.5 rounded-xl border border-blue-500/40 space-y-2">
+          <label class="text-[10px] text-blue-400 font-bold uppercase block">📄 Upload Resume Scan</label>
+          <div class="border-2 border-dashed border-slate-700 hover:border-blue-500 rounded-xl p-4 text-center cursor-pointer transition-all bg-slate-900/60 relative">
+            <input type="file" id="resume-input" accept=".pdf,.txt,.doc,.docx" onchange="handleResumeFile(event)" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full" />
+            <span class="text-xs text-slate-200 font-medium">📂 Drop Resume or Click to Upload</span>
+            <p id="resume-msg" class="text-[10px] text-slate-400 mt-1">Auto-extracts programming skills</p>
+          </div>
+        </div>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-3">
+          <div>
+            <label class="text-[10px] text-emerald-400 font-bold uppercase block mb-1">Your Acquired Skills</label>
+            <input type="text" id="input-acquired" value="Python, HTML, Git, React" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500" />
+          </div>
+          <div>
+            <label class="text-[10px] text-rose-400 font-bold uppercase block mb-1">Target Corporate Stack</label>
+            <input type="text" id="input-target" value="Python, DSA, SQL, Docker, React, System Design" class="w-full bg-slate-900 border border-slate-700 rounded-xl px-3 py-2 text-xs text-white focus:outline-none focus:border-blue-500" />
+          </div>
+          <button onclick="recalculateSkills()" class="w-full bg-blue-600 hover:bg-blue-500 text-white py-2.5 rounded-xl text-xs font-semibold shadow transition-all">Recalculate Skill Match</button>
+        </div>
+      </div>
+      <div class="text-[11px] text-slate-500 text-center">Engine v3.0 Active • Secure Client Sandbox</div>
+    </section>
+
+    <section class="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-xl space-y-6">
+      <div>
+        <div class="flex justify-between items-center mb-5 border-b border-slate-800 pb-3">
+          <div>
+            <span class="text-[10px] text-blue-400 uppercase font-bold tracking-wider">Analytics & Insights</span>
+            <h2 class="text-lg font-bold text-white">Skill Gap Mapping Dashboard</h2>
+          </div>
+          <span class="text-xs bg-slate-950 text-slate-300 px-3 py-1.5 rounded-xl border border-slate-800">Target Role: Senior Software Engineer</span>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-5">
+          <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex flex-col items-center justify-center text-center">
+            <span class="text-[10px] text-slate-400 font-bold uppercase mb-2">Overall Match Score</span>
+            <div id="ring-container" class="w-20 h-20 rounded-full bg-[conic-gradient(#10b981_0%_50%,#ef4444_50%_100%)] p-2.5 flex items-center justify-center shadow-md">
+              <div class="w-full h-full bg-slate-900 rounded-full flex items-center justify-center">
+                <span id="score-text" class="text-base font-extrabold text-blue-400">50%</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex flex-col justify-between">
+            <span class="text-[10px] font-bold text-emerald-400 uppercase mb-2">Matched Competencies</span>
+            <div id="matched-tags" class="flex flex-wrap gap-1.5 items-start">
+              <span class="text-[10px] bg-emerald-950 border border-emerald-500/40 text-emerald-300 px-2 py-0.5 rounded-full">✓ Python</span>
+            </div>
+          </div>
+
+          <div class="bg-slate-950 border border-slate-800 p-4 rounded-xl flex flex-col justify-between">
+            <span class="text-[10px] font-bold text-rose-400 uppercase mb-2">Missing Deficits</span>
+            <div id="missing-tags" class="flex flex-wrap gap-1.5 items-start">
+              <span class="text-[10px] bg-rose-950 border border-rose-500/40 text-rose-300 px-2 py-0.5 rounded-full">✕ DSA</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-slate-950 border border-slate-800 p-5 rounded-xl space-y-3">
+          <span class="text-xs text-blue-400 font-bold uppercase tracking-wider">Auto-Generated Study Plan & YouTube Resources</span>
+          <div id="resources-box" class="space-y-2.5 max-h-56 overflow-y-auto pr-1">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+      
+      <div class="text-xs text-slate-400 pt-3 border-t border-slate-800 flex justify-between items-center">
+        <span>Status: Automated Skill Parsing Enabled</span>
+        <span class="text-emerald-400 font-semibold">● System Ready</span>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ========================================================================= -->
+  <!-- TAB 2: AI INTERVIEW ARENA DASHBOARD                                       -->
+  <!-- ========================================================================= -->
+  <main id="view-interview" class="tab-content hidden grid-cols-1 lg:grid-cols-12 gap-6 flex-1">
+    <section class="lg:col-span-4 bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-xl space-y-5">
+      <div class="space-y-4">
+        <div>
+          <span class="text-[10px] text-emerald-400 uppercase font-bold tracking-wider">Readiness Scorecard</span>
+          <h2 class="text-base font-bold text-white">Mock Interview Simulator</h2>
+        </div>
+        <p class="text-xs text-slate-300 leading-relaxed">Test your technical explanations against corporate AI interview panels with live rubric scoring.</p>
+        
+        <div class="space-y-2">
+          <label class="text-[10px] text-slate-400 uppercase font-bold block">Select Interview Track</label>
+          <select id="interview-track" onchange="onTrackChange()" class="w-full bg-slate-950 border border-slate-800 rounded-xl p-3 text-xs text-white focus:outline-none">
+            <option value="dsa">Software Engineering (DSA & System Design)</option>
+            <option value="aiml">AI / Machine Learning Engineer</option>
+            <option value="fullstack">Full Stack Web Development</option>
+            <option value="hr">Behavioral & Cultural Fit (HR Round)</option>
+          </select>
+        </div>
+
+        <button onclick="startNewSession()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white py-3 rounded-xl text-xs font-semibold shadow-lg transition-all">Start New Interview Session</button>
+
+        <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 space-y-2.5">
+          <div class="flex justify-between items-center">
+            <span class="text-[10px] text-amber-400 font-bold uppercase">Live Rubric Evaluation</span>
+            <button onclick="resetRubrics()" class="text-[10px] text-blue-400 hover:underline">Reset</button>
+          </div>
+          <div class="space-y-2 text-xs">
+            <div class="flex justify-between text-slate-300"><span>Technical Accuracy</span><span id="rubric-t" class="text-emerald-400 font-bold">94%</span></div>
+            <div class="flex justify-between text-slate-300"><span>Communication Clarity</span><span id="rubric-c" class="text-emerald-400 font-bold">88%</span></div>
+            <div class="flex justify-between text-slate-300"><span>Optimization Depth</span><span id="rubric-o" class="text-amber-400 font-bold">82%</span></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-slate-950 p-4 rounded-xl border border-slate-800 text-center">
+        <span class="text-[10px] text-slate-400 uppercase block font-medium">Overall Simulator Score</span>
+        <span id="overall-score" class="text-2xl font-extrabold text-emerald-400">90 / 100</span>
+        <p class="text-[10px] text-slate-400 mt-1">Status: Qualified for Tier-1 Company Loops</p>
+      </div>
+    </section>
+
+    <!-- Chat Box & Persona Control -->
+    <section class="lg:col-span-8 bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-xl space-y-4">
+      <div>
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-4 border-b border-slate-800 pb-4 gap-3">
+          <div>
+            <span id="persona-label" class="text-[10px] text-blue-400 uppercase font-bold tracking-wider">Active Panelist: Sarah (Principal Tech Lead)</span>
+            <h3 id="question-text" class="text-sm font-bold text-white mt-0.5">Question 1: Explain how hash tables resolve collisions under the hood.</h3>
+          </div>
+          <div class="flex items-center gap-2">
+            <select id="persona-select" onchange="onPersonaChange()" class="bg-slate-950 border border-slate-800 rounded-xl px-3 py-1.5 text-xs text-white focus:outline-none">
+              <option value="sarah">Sarah (Strict Lead)</option>
+              <option value="alex">Alex (Friendly Peer)</option>
+              <option value="david">David (Venture VP)</option>
+            </select>
+            <span id="timer-badge" class="text-xs bg-amber-500/20 text-amber-300 px-3 py-1.5 rounded-xl font-mono font-semibold">12:00</span>
+          </div>
+        </div>
+
+        <div id="chat-container" class="bg-slate-950 border border-slate-800 p-4 rounded-xl h-72 overflow-y-auto space-y-3 text-xs">
+          <div class="bg-slate-800 text-slate-200 p-3.5 rounded-xl max-w-[85%] leading-relaxed">
+            👋 Welcome! Let's begin your mock technical screening. How would you explain hash table collision resolution to an engineering panel?
+          </div>
+          <div class="bg-blue-600 text-white p-3.5 rounded-xl ml-auto max-w-[85%] text-right leading-relaxed">
+            Chaining uses linked lists at each bucket index to store multiple items hashing to the same key, whereas open addressing finds the next available open slot.
+          </div>
+          <div class="bg-slate-800 text-slate-200 p-3.5 rounded-xl max-w-[85%] leading-relaxed">
+            Sarah: Great clarity! What are the performance and memory implications of high load factors in open addressing?
+          </div>
+        </div>
+      </div>
+
+      <div class="flex gap-2 pt-2">
+        <input type="text" id="answer-input" placeholder="Type your technical response..." onkeydown="if(event.key === 'Enter') submitAnswer()" class="flex-1 bg-slate-950 border border-slate-800 rounded-xl px-4 py-3 text-xs text-white focus:outline-none focus:border-blue-500" />
+        <button onclick="submitAnswer()" class="bg-blue-600 hover:bg-blue-500 text-white px-6 py-3 rounded-xl text-xs font-semibold shadow">Submit Answer</button>
+      </div>
+    </section>
+  </main>
+
+
+  <!-- ========================================================================= -->
+  <!-- TAB 3: APPLICATION & REFERRAL TRACKER DASHBOARD                           -->
+  <!-- ========================================================================= -->
+  <main id="view-tracker" class="tab-content hidden grid-cols-1 lg:grid-cols-12 gap-6 flex-1">
+    <div class="lg:col-span-12 bg-slate-900 border border-slate-800 rounded-2xl p-6 flex flex-col justify-between shadow-xl space-y-6">
+      <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-3 border-b border-slate-800 pb-4">
+        <div>
+          <span class="text-[10px] text-purple-400 uppercase font-bold tracking-wider">Job Pipeline Manager</span>
+          <h2 class="text-lg font-bold text-white">Corporate Application & Referral Kanban Tracker</h2>
+        </div>
+        <div class="flex gap-2">
+          <button onclick="exportJSONPipeline()" class="bg-slate-950 hover:bg-slate-800 text-slate-200 px-4 py-2.5 rounded-xl text-xs font-semibold border border-slate-800 transition-all">💾 Export JSON</button>
+          <button onclick="addNewCardPrompt()" class="bg-blue-600 hover:bg-blue-500 text-white px-5 py-2.5 rounded-xl text-xs font-semibold shadow transition-all">+ Add New Application</button>
+        </div>
+      </div>
+
+      <!-- Kanban 4 Columns Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-4 gap-4 overflow-x-auto pb-2">
+        
+        <!-- Column 1: Wishlist -->
+        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3.5 space-y-3">
+          <div class="flex justify-between items-center text-xs font-bold text-slate-400 uppercase border-b border-slate-800 pb-2.5">
+            <span>Wishlist</span>
+            <span id="badge-wishlist" class="bg-slate-900 px-2.5 py-0.5 rounded text-[11px] text-slate-300">3</span>
+          </div>
+          <div id="kanban-wishlist" class="space-y-3 min-h-[220px]">
+            <div class="bg-slate-900 p-3.5 rounded-xl border border-slate-800 space-y-2 relative group hover:border-blue-500 transition-all">
+              <div class="flex justify-between items-start">
+                <span class="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded">Remote</span>
+                <button onclick="removeCard(this)" class="text-slate-500 hover:text-rose-400 text-xs">✕</button>
+              </div>
+              <p class="text-xs font-bold text-white">Software Engineer</p>
+              <p class="text-[11px] text-slate-400">Google • Mountain View</p>
+              <div class="pt-2 flex justify-between items-center border-t border-slate-800/80">
+                <span class="text-[10px] text-slate-500">Added Today</span>
+                <button onclick="moveCard(this, 'applied')" class="text-[10px] bg-slate-800 hover:bg-blue-600 text-slate-300 hover:text-white px-2.5 py-1 rounded transition-all">Move ➔</button>
+              </div>
+            </div>
+            <div class="bg-slate-900 p-3.5 rounded-xl border border-slate-800 space-y-2 relative group hover:border-blue-500 transition-all">
+              <div class="flex justify-between items-start">
+                <span class="text-[10px] bg-purple-500/20 text-purple-400 px-2 py-0.5 rounded">Hybrid</span>
+                <button onclick="removeCard(this)" class="text-slate-500 hover:text-rose-400 text-xs">✕</button>
+              </div>
+              <p class="text-xs font-bold text-white">AI Developer</p>
+              <p class="text-[11px] text-slate-400">Microsoft • Hyderabad</p>
+              <div class="pt-2 flex justify-between items-center border-t border-slate-800/80">
+                <span class="text-[10px] text-slate-500">Added 2d ago</span>
+                <button onclick="moveCard(this, 'applied')" class="text-[10px] bg-slate-800 hover:bg-blue-600 text-slate-300 hover:text-white px-2.5 py-1 rounded transition-all">Move ➔</button>
+              </div>
+            </div>
+            <div class="bg-slate-900 p-3.5 rounded-xl border border-slate-800 space-y-2 relative group hover:border-blue-500 transition-all">
+              <div class="flex justify-between items-start">
+                <span class="text-[10px] bg-emerald-500/20 text-emerald-400 px-2 py-0.5 rounded">Onsite</span>
+                <button onclick="removeCard(this)" class="text-slate-500 hover:text-rose-400 text-xs">✕</button>
+              </div>
+              <p class="text-xs font-bold text-white">Systems Engineer</p>
+              <p class="text-[11px] text-slate-400">Apple • Cupertino</p>
+              <div class="pt-2 flex justify-between items-center border-t border-slate-800/80">
+                <span class="text-[10px] text-slate-500">Added 3d ago</span>
+                <button onclick="moveCard(this, 'applied')" class="text-[10px] bg-slate-800 hover:bg-blue-600 text-slate-300 hover:text-white px-2.5 py-1 rounded transition-all">Move ➔</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 2: Applied -->
+        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3.5 space-y-3">
+          <div class="flex justify-between items-center text-xs font-bold text-amber-400 uppercase border-b border-slate-800 pb-2.5">
+            <span>Applied</span>
+            <span id="badge-applied" class="bg-slate-900 px-2.5 py-0.5 rounded text-[11px] text-slate-300">2</span>
+          </div>
+          <div id="kanban-applied" class="space-y-3 min-h-[220px]">
+            <div class="bg-slate-900 p-3.5 rounded-xl border border-slate-800 space-y-2 relative group hover:border-amber-500 transition-all">
+              <div class="flex justify-between items-start">
+                <span class="text-[10px] bg-amber-500/20 text-amber-300 px-2 py-0.5 rounded">Referral Sent</span>
+                <button onclick="removeCard(this)" class="text-slate-500 hover:text-rose-400 text-xs">✕</button>
+              </div>
+              <p class="text-xs font-bold text-white">Backend Engineer</p>
+              <p class="text-[11px] text-slate-400">Amazon • Bengaluru</p>
+              <div class="pt-2 flex justify-between items-center border-t border-slate-800/80">
+                <button onclick="moveCard(this, 'wishlist')" class="text-[10px] bg-slate-800 text-slate-400 hover:text-white px-2 py-1 rounded">⬅</button>
+                <button onclick="moveCard(this, 'interviewing')" class="text-[10px] bg-slate-800 hover:bg-blue-600 text-slate-300 hover:text-white px-2.5 py-1 rounded transition-all">Move ➔</button>
+              </div>
+            </div>
+            <div class="bg-slate-900 p-3.5 rounded-xl border border-slate-800 space-y-2 relative group hover:border-amber-500 transition-all">
+              <div class="flex justify-between items-start">
+                <span class="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded">Resume Forwarded</span>
+                <button onclick="removeCard(this)" class="text-slate-500 hover:text-rose-400 text-xs">✕</button>
+              </div>
+              <p class="text-xs font-bold text-white">Full Stack Developer</p>
+              <p class="text-[11px] text-slate-400">Netflix • Los Gatos</p>
+              <div class="pt-2 flex justify-between items-center border-t border-slate-800/80">
+                <button onclick="moveCard(this, 'wishlist')" class="text-[10px] bg-slate-800 text-slate-400 hover:text-white px-2 py-1 rounded">⬅</button>
+                <button onclick="moveCard(this, 'interviewing')" class="text-[10px] bg-slate-800 hover:bg-blue-600 text-slate-300 hover:text-white px-2.5 py-1 rounded transition-all">Move ➔</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 3: Interviewing -->
+        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3.5 space-y-3">
+          <div class="flex justify-between items-center text-xs font-bold text-blue-400 uppercase border-b border-slate-800 pb-2.5">
+            <span>Interviewing</span>
+            <span id="badge-interviewing" class="bg-slate-900 px-2.5 py-0.5 rounded text-[11px] text-slate-300">2</span>
+          </div>
+          <div id="kanban-interviewing" class="space-y-3 min-h-[220px]">
+            <div class="bg-slate-900 p-3.5 rounded-xl border border-slate-800 space-y-2 relative group hover:border-blue-500 transition-all">
+              <div class="flex justify-between items-start">
+                <span class="text-[10px] bg-blue-500/20 text-blue-300 px-2 py-0.5 rounded">Round 2: Technical</span>
+                <button onclick="removeCard(this)" class="text-slate-500 hover:text-rose-400 text-xs">✕</button>
+              </div>
+              <p class="text-xs font-bold text-white">AI Research Intern</p>
+              <p class="text-[11px] text-slate-400">OpenAI • San Francisco</p>
+              <div class="pt-2 flex justify-between items-center border-t border-slate-800/80">
+                <button onclick="moveCard(this, 'applied')" class="text-[10px] bg-slate-800 text-slate-400 hover:text-white px-2 py-1 rounded">⬅</button>
+                <button onclick="moveCard(this, 'offers')" class="text-[10px] bg-slate-800 hover:bg-emerald-600 text-slate-300 hover:text-white px-2.5 py-1 rounded transition-all">Offer 🎉</button>
+              </div>
+            </div>
+            <div class="bg-slate-900 p-3.5 rounded-xl border border-slate-800 space-y-2 relative group hover:border-blue-500 transition-all">
+              <div class="flex justify-between items-start">
+                <span class="text-[10px] bg-purple-500/20 text-purple-300 px-2 py-0.5 rounded">System Design</span>
+                <button onclick="removeCard(this)" class="text-slate-500 hover:text-rose-400 text-xs">✕</button>
+              </div>
+              <p class="text-xs font-bold text-white">Cloud Engineer</p>
+              <p class="text-[11px] text-slate-400">Oracle • Austin</p>
+              <div class="pt-2 flex justify-between items-center border-t border-slate-800/80">
+                <button onclick="moveCard(this, 'applied')" class="text-[10px] bg-slate-800 text-slate-400 hover:text-white px-2 py-1 rounded">⬅</button>
+                <button onclick="moveCard(this, 'offers')" class="text-[10px] bg-slate-800 hover:bg-emerald-600 text-slate-300 hover:text-white px-2.5 py-1 rounded transition-all">Offer 🎉</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Column 4: Offers -->
+        <div class="bg-slate-950 border border-slate-800 rounded-xl p-3.5 space-y-3">
+          <div class="flex justify-between items-center text-xs font-bold text-emerald-400 uppercase border-b border-slate-800 pb-2.5">
+            <span>Offers 🎉</span>
+            <span id="badge-offers" class="bg-slate-900 px-2.5 py-0.5 rounded text-[11px] text-slate-300">1</span>
+          </div>
+          <div id="kanban-offers" class="space-y-3 min-h-[220px]">
+            <div class="bg-slate-900 p-3.5 rounded-xl border border-emerald-500/40 space-y-2 relative group">
+              <div class="flex justify-between items-start">
+                <span class="text-[10px] bg-emerald-500/20 text-emerald-300 px-2 py-0.5 rounded">$115k Package</span>
+                <button onclick="removeCard(this)" class="text-slate-500 hover:text-rose-400 text-xs">✕</button>
+              </div>
+              <p class="text-xs font-bold text-white">Junior Developer</p>
+              <p class="text-[11px] text-slate-400">Stripe • Remote</p>
+              <div class="pt-2 text-right border-t border-slate-800/80">
+                <span class="text-[10px] text-emerald-400 font-bold">Offer Accepted ✓</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+
+  <!-- JavaScript Application Logic -->
+  <script>
+    // Tab Switcher Controller
+    function switchTab(tabId) {
+      const views = ['skill', 'interview', 'tracker'];
+      views.forEach(v => {
+        const viewEl = document.getElementById(`view-${v}`);
+        const btnEl = document.getElementById(`btn-tab-${v}`);
+        if(viewEl) viewEl.classList.add('hidden');
+        if(btnEl) {
+          btnEl.classList.remove('bg-blue-600', 'text-white', 'shadow-md');
+          btnEl.classList.add('hover:text-white');
+        }
+      });
+
+      const activeView = document.getElementById(`view-${tabId}`);
+      const activeBtn = document.getElementById(`btn-tab-${tabId}`);
+      if(activeView) activeView.classList.remove('hidden');
+      if(activeBtn) {
+        activeBtn.classList.add('bg-blue-600', 'text-white', 'shadow-md');
+        activeBtn.classList.remove('hover:text-white');
+      }
+    }
+
+    // --- Tab 1: Skill Gap Engine Logic ---
+    function handleResumeFile(e) {
+      const file = e.target.files[0];
+      if(!file) return;
+      const msg = document.getElementById('resume-msg');
+      msg.innerText = `Analyzing "${file.name}"...`;
+      
+      setTimeout(() => {
+        let skills = "Python, JavaScript, Git, HTML, React";
+        const low = file.name.toLowerCase();
+        if(low.includes('data')) skills = "Python, SQL, Tableau, Pandas";
+        if(low.includes('java')) skills = "Java, Spring Boot, MySQL, Git";
+        
+        document.getElementById('input-acquired').value = skills;
+        msg.innerText = `✓ Successfully parsed "${file.name}"!`;
+        recalculateSkillsQuiet();
+      }, 700);
+    }
+
+    function recalculateSkills() {
+      recalculateSkillsQuiet();
+      alert("Skill gap map recalculated successfully across your profile!");
+    }
+
+    function recalculateSkillsQuiet() {
+      const acquiredStr = document.getElementById('input-acquired').value;
+      const targetStr = document.getElementById('input-target').value;
+
+      const acquiredArr = [...new Set(acquiredStr.split(/[\s,]+/).filter(Boolean).map(s => s.trim()))];
+      const targetArr = [...new Set(targetStr.split(/[\s,]+/).filter(Boolean).map(s => s.trim()))];
+
+      const matched = targetArr.filter(t => acquiredArr.some(a => a.toLowerCase() === t.toLowerCase()));
+      const missing = targetArr.filter(t => !acquiredArr.some(a => a.toLowerCase() === t.toLowerCase()));
+
+      const pct = targetArr.length > 0 ? Math.round((matched.length / targetArr.length) * 100) : 0;
+
+      document.getElementById('score-text').innerText = `${pct}%`;
+      document.getElementById('ring-container').style.background = `conic-gradient(#10b981 0% ${pct}%, #ef4444 ${pct}% 100%)`;
+
+      document.getElementById('matched-tags').innerHTML = matched.length > 0
+        ? matched.map(m => `<span class="text-[10px] bg-emerald-950 border border-emerald-500/40 text-emerald-300 px-2 py-0.5 rounded-full capitalize">✓ ${m}</span>`).join('')
+        : `<span class="text-[10px] text-slate-500">None matched</span>`;
+
+      document.getElementById('missing-tags').innerHTML = missing.length > 0
+        ? missing.map(m => `<span class="text-[10px] bg-rose-950 border border-rose-500/40 text-rose-300 px-2 py-0.5 rounded-full capitalize">✕ ${m}</span>`).join('')
+        : `<span class="text-[10px] text-emerald-400">All target skills acquired! 🎉</span>`;
+
+      const resBox = document.getElementById('resources-box');
+      resBox.innerHTML = missing.length > 0
+        ? missing.map(skill => `
+            <div class="bg-slate-900 p-3 rounded-xl border border-slate-800 flex justify-between items-center">
+              <div>
+                <p class="text-xs font-bold text-white capitalize">Master ${skill}</p>
+                <p class="text-[10px] text-slate-400">Curated Video & Practical Module</p>
+              </div>
+              <a href="https://www.youtube.com/results?search_query=${encodeURIComponent(skill + ' tutorial course')}" target="_blank" class="bg-red-600 hover:bg-red-500 text-white text-xs font-bold px-3 py-1.5 rounded-lg">▶ Watch YT</a>
+            </div>
+          `).join('')
+        : `<p class="text-xs text-emerald-400 text-center py-2">No missing gaps! You are fully prepared for corporate shortlists.</p>`;
+    }
+
+    // --- Tab 2: Interview Arena Logic ---
+    const qMap = {
+      dsa: "Question: Explain how hash tables resolve collisions under the hood and compare chaining vs open addressing.",
+      aiml: "Question: How do you handle vanishing gradient issues in deep neural networks during backpropagation?",
+      fullstack: "Question: Explain the lifecycle differences between React functional hooks and legacy class components.",
+      hr: "Question: Describe a high-stakes disagreement with a teammate and how you resolved it constructively."
+    };
+
+    function onTrackChange() {
+      const track = document.getElementById('interview-track').value;
+      if(qMap[track]) {
+        document.getElementById('question-text').innerText = qMap[track];
+      }
+    }
+
+    function onPersonaChange() {
+      const p = document.getElementById('persona-select').value;
+      const mapNames = { sarah: "Sarah (Strict Lead)", alex: "Alex (Friendly Peer)", david: "David (Venture VP)" };
+      document.getElementById('persona-label').innerText = `Active Panelist: ${mapNames[p] || 'Sarah'}`;
+    }
+
+    function resetRubrics() {
+      document.getElementById('rubric-t').innerText = "94%";
+      document.getElementById('rubric-c').innerText = "88%";
+      document.getElementById('rubric-o').innerText = "82%";
+      document.getElementById('overall-score').innerText = "90 / 100";
+    }
+
+    function startNewSession() {
+      const chat = document.getElementById('chat-container');
+      chat.innerHTML += `<div class="bg-emerald-950/70 border border-emerald-500/40 text-emerald-300 p-3 rounded-xl">🚀 New interview session started! AI panel is actively listening and reviewing your technical responses.</div>`;
+      chat.scrollTop = chat.scrollHeight;
+    }
+
+    function submitAnswer() {
+      const input = document.getElementById('answer-input');
+      const val = input.value.trim();
+      if(!val) return;
+
+      const chat = document.getElementById('chat-container');
+      chat.innerHTML += `<div class="bg-blue-600 text-white p-3.5 rounded-xl ml-auto max-w-[85%] text-right leading-relaxed">${val}</div>`;
+      input.value = '';
+
+      setTimeout(() => {
+        const tScore = Math.min(99, Math.floor(Math.random() * 8) + 91);
+        const cScore = Math.min(99, Math.floor(Math.random() * 10) + 85);
+        document.getElementById('rubric-t').innerText = tScore + "%";
+        document.getElementById('rubric-c').innerText = cScore + "%";
+        document.getElementById('overall-score').innerText = Math.round((tScore + cScore)/2) + " / 100";
+
+        chat.innerHTML += `<div class="bg-slate-800 text-slate-200 p-3.5 rounded-xl max-w-[85%] leading-relaxed">Panelist: Solid breakdown and precise terminology. Let's move to scaling constraints.</div>`;
+        chat.scrollTop = chat.scrollHeight;
+      }, 700);
+    }
+
+    // --- Tab 3: Kanban Tracker Logic ---
+    function updateBadges() {
+      ['wishlist', 'applied', 'interviewing', 'offers'].forEach(col => {
+        const cEl = document.getElementById(`kanban-${col}`);
+        const bEl = document.getElementById(`badge-${col}`);
+        if(cEl && bEl) bEl.innerText = cEl.children.length;
+      });
+    }
+
+    function removeCard(btn) {
+      const card = btn.closest('.bg-slate-900');
+      if(card) {
+        card.remove();
+        updateBadges();
+      }
+    }
+
+    function moveCard(btn, targetCol) {
+      const card = btn.closest('.bg-slate-900');
+      const targetContainer = document.getElementById(`kanban-${targetCol}`);
+      if(card && targetContainer) {
+        card.remove();
+        const footer = card.querySelector('.pt-2');
+        if(footer) {
+          if(targetCol === 'wishlist') {
+            footer.innerHTML = `<span class="text-[10px] text-slate-500">Moved back</span><button onclick="moveCard(this, 'applied')" class="text-[10px] bg-slate-800 hover:bg-blue-600 text-slate-300 hover:text-white px-2.5 py-1 rounded">Move ➔</button>`;
+          } else if(targetCol === 'applied') {
+            footer.innerHTML = `<button onclick="moveCard(this, 'wishlist')" class="text-[10px] bg-slate-800 text-slate-400 hover:text-white px-2 py-1 rounded">⬅</button><button onclick="moveCard(this, 'interviewing')" class="text-[10px] bg-slate-800 hover:bg-blue-600 text-slate-300 hover:text-white px-2.5 py-1 rounded">Move ➔</button>`;
+          } else if(targetCol === 'interviewing') {
+            footer.innerHTML = `<button onclick="moveCard(this, 'applied')" class="text-[10px] bg-slate-800 text-slate-400 hover:text-white px-2 py-1 rounded">⬅</button><button onclick="moveCard(this, 'offers')" class="text-[10px] bg-slate-800 hover:bg-emerald-600 text-slate-300 hover:text-white px-2.5 py-1 rounded">Offer 🎉</button>`;
+          } else if(targetCol === 'offers') {
+            footer.innerHTML = `<span class="text-[10px] text-emerald-400 font-bold">Offer Secured! ✓</span>`;
+          }
+        }
+        targetContainer.appendChild(card);
+        updateBadges();
+      }
+    }
+
+    function addNewCardPrompt() {
+      const response = prompt("Enter Role & Company (e.g., Frontend Developer @ Stripe):");
+      if(response) {
+        const parts = response.split('@');
+        const role = parts[0] ? parts[0].trim() : "Developer";
+        const comp = parts[1] ? parts[1].trim() : "Tech Corp";
+
+        const wishlist = document.getElementById('kanban-wishlist');
+        const card = document.createElement('div');
+        card.className = 'bg-slate-900 p-3.5 rounded-xl border border-slate-800 space-y-2 relative group hover:border-blue-500 transition-all';
+        card.innerHTML = `
+          <div class="flex justify-between items-start">
+            <span class="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-0.5 rounded">Custom</span>
+            <button onclick="removeCard(this)" class="text-slate-500 hover:text-rose-400 text-xs">✕</button>
+          </div>
+          <p class="text-xs font-bold text-white">${role}</p>
+          <p class="text-[11px] text-slate-400">${comp} • Remote</p>
+          <div class="pt-2 flex justify-between items-center border-t border-slate-800/80">
+            <span class="text-[10px] text-slate-500">Just added</span>
+            <button onclick="moveCard(this, 'applied')" class="text-[10px] bg-slate-800 hover:bg-blue-600 text-slate-300 hover:text-white px-2.5 py-1 rounded">Move ➔</button>
+          </div>
+        `;
+        wishlist.appendChild(card);
+        updateBadges();
+      }
+    }
+
+    function exportJSONPipeline() {
+      const summary = {
+        wishlist: document.getElementById('kanban-wishlist').children.length,
+        applied: document.getElementById('kanban-applied').children.length,
+        interviewing: document.getElementById('kanban-interviewing').children.length,
+        offers: document.getElementById('kanban-offers').children.length,
+        exportedAt: new Date().toLocaleString()
+      };
+      alert("Pipeline JSON Data exported successfully:\n\n" + JSON.stringify(summary, null, 2));
+    }
+  </script>
+</body>
+</html>
